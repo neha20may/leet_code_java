@@ -1,12 +1,11 @@
 package graph;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class nearestZero {
     public static void main(String[] args) {
         int [][]mat={{0,0,0},{0,1,0},{1,1,1}};
-        Solution solution = new Solution();
+        SolutionPattern solution = new SolutionPattern();
         int [][]res= solution.updateMatrix(mat);
         System.out.println(res);
     }
