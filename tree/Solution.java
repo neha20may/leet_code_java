@@ -37,7 +37,7 @@ class Solution {
 
         q.add(root);
         int level = 0;
-        TreeNode marker = new TreeNode(-1, null, null);
+        TreeNode marker = new TreeNode();
         int res = 0;
         List<TreeNode> lnodes = new ArrayList();
         lnodes.add(root);

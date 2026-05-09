@@ -80,4 +80,8 @@ class SolutionPattern {
         return bfs(startGene, endGene, processedDict);
 
     }
+
+    public int[][] updateMatrix(int[][] mat) {
+        return mat;
+    }
 }

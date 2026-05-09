@@ -111,9 +111,9 @@ class Solution {
         int count= Math.min(Math.min(Math.min(b,a), l),n);
         int count2= Math.min(count, l/2);
 
-        Arrays.stream(arr)
-                .map(x->X)
-                .toArray();
+//        Arrays.stream(arr)
+//                .map(x->x)
+//                .toArray();
 //        return Math.min(count, count2);
         map.entrySet();
     }

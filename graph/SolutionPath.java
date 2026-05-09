@@ -54,5 +54,6 @@ class SolutionPath {
                 dfs(node);
             }
         }
+        return res;
     }
 }
