@@ -14,7 +14,7 @@ public class permutation {
         if (bufferIndex == k) {
             System.out.println("Buffer print");
             for (int i = 0; i < bufferIndex; i++) {
-                System.out.println(buffer[i]);
+                System.out.print(buffer[i]+" ");
             }
             System.out.println("Buffer print end");
         }
