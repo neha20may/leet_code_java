@@ -21,6 +21,7 @@ public class least_unique {
             }
             Comparator<int[]> c= (int[] a, int []b)->{return a[1]-b[1];};
             PriorityQueue<int[]> pq= new PriorityQueue<>(c);
+
             for(int [] r: pairs){
                 pq.add(r);
             }
