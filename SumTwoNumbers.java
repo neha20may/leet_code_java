@@ -23,6 +23,7 @@ public class SumTwoNumbers {
     }
 
     private static Pair<Integer, Integer> method_1(Integer[] a, int target) {
+//        Collections.sort(List.of(a)); List.of() creates immutable list and collections might or might not work !
         Collections.sort(Arrays.asList(a));
         int i = 0;
         int j = a.length - 1;
@@ -41,7 +42,7 @@ public class SumTwoNumbers {
     }
 
     private static Pair<Integer, Integer> method_2(Integer[] a, int target) {
-        HashSet<Integer> set = new HashSet<>(List.of(a));
+        HashSet<Integer> set = new HashSet<>(Arrays.asList(a));
         int i = 0;
         while (i < a.length - 1) {
             int x = a[i];
