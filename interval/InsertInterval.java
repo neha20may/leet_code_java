@@ -3,32 +3,56 @@ package interval;
 import java.util.*;
 
 public class InsertInterval {
-    class Solution {
-        public int[][] insert(int[][] intervals, int[] newInterval) {
+    static class Solution {
+        static public int[][] insert(int[][] intervals, int[] newInterval) {
             int n = intervals.length;
-            int[] s = new int[n];
+            Integer[] s = new Integer[n];
             int c = 0;
             for (int[] i : intervals) {
                 s[c++] = i[0];
             }
-            int indexToInsert = findIndex(s, newInterval);
+//            int indexToInsert = findIndex(s, newInterval);
+            int indexToInsert = Collections.binarySearch(Arrays.asList(s), newInterval[0]);
+            if(indexToInsert<0){
+                indexToInsert= -indexToInsert -1 ;
+            }
+            if(indexToInsert >0){
+                indexToInsert= indexToInsert-1;
+            }
             int[] first = intervals[indexToInsert];
 
-            if (first[1] <= newInterval[0]) {
+            if (first[1] >= newInterval[0]) {
                 first[1] = Math.max(first[1], newInterval[1]);
             }
+            List<int[]> result = new ArrayList();
+            for(int i=0; i< indexToInsert; i++){
+                result.add(intervals[i]);
+            }
             //check if first started to overlap with rest of the intervals
-            for (int i = indexToInsert; i < n - 1; i++) {
+            for (int i = indexToInsert; i < n-1; i++) {
                 int[] interval = intervals[i];
-                if (interval[i] <= interval[i + 1]) {
-                    interval[i] = Math.max(interval[i], interval[i + 1]);
+                int [] nextInterval = intervals[i+1];
+                if (interval[1] >= nextInterval[0]) {
+                    interval[1] = Math.max(interval[1], nextInterval[1]);
+                    result.add(interval);
+                    i++;
+                }else{
+                    result.add(interval);
                 }
             }
-            return intervals;
+            int [] lastInterval = intervals[n-1];
+            //is it part of result - got consumed by prev interval or left out?
+            int [] lastAddedInterval = result.get(result.size()-1);
+            int[] lastInt= intervals[n-1];
+            if (lastAddedInterval[1]<lastInt[1]){
+                result.add(lastInt);
+            }
+
+            return result.toArray(new int[0][]);
 
         }
 
-        int findIndex(int[] startTimes, int[] newInterval) {
+        static int findIndex(int[] startTimes, int[] newInterval) {
             // binary search
             int low = 0;
             int high = startTimes.length - 1;
@@ -51,7 +75,11 @@ public class InsertInterval {
     }
 
     public static void main(String[] args) {
-
-        System.out.println(":hi");
+//        [[1,2],[3,5],[6,7],[8,10],[12,16]]
+//        [4,8]
+        int[][] intervals = {{1,2}, {3,5},{6,7}, {8,10}, {12,16}};
+        int[] newInterval = {4, 8};
+        int[][] result = Solution.insert(intervals, newInterval);
+        System.out.println(Arrays.toString(result));
     }
 }

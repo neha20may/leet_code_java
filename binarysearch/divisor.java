@@ -44,7 +44,7 @@ public class divisor {
 
     }
 
-    static void main() {
+    public static void main(String [] args) {
 
         divisor obj = new divisor();
         int []a={1,2,5,9};
